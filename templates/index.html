@@ -1,0 +1,33 @@
+<!--
+index.html, main page for ishmael website
+-->
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>
+    Welcome to drinkBase!
+  </title>
+  <link rel="stylesheet" href="../static/altStyles.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Source+Code+Pro:300,400" rel="stylesheet">
+</head>
+
+<table class="table">
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for number, text in bookDict %}
+    <tr>
+        <td>{{ number }}</td>
+        <td>{{ text }}</td>
+    </tr>
+    {% endfor %}
+
+
+
+
+
+
+</html>

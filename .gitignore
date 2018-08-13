@@ -1,0 +1,9 @@
+*.db
+*.png
+/images
+*.idea
+*.git
+/ishmaelEnv
+__pycache__/
+/misc
+*.swp

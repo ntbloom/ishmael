@@ -13,15 +13,30 @@ body {
     color: #000;
     font-size: 12pt;
     text-align: left;
+    padding-bottom: 0.25em;
 }
 
 td {
+    vertical-align: baseline;
     padding-bottom: 0.5em;
+    padding-right: 0.5em;
 }
 
+header {
+    background-color: white;
+    font-size: 10pt;
+    position: fixed;
+    top: 0;
+    width: cover;
+    padding: 1em;
+}
+
+
 footer {
-    position: center;
+    font-size: 8pt;
     bottom: 0;
     margin-top: 1em;
+    padding: 1em; 
     text-align: center;
+    width: 100%;  
 }

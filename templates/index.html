@@ -15,7 +15,7 @@ index.html, main page for ishmael website
 
 <body>
 
-<table class="table">
+<table>
     <tr>
         <th></th>
         <th></th>
@@ -23,16 +23,17 @@ index.html, main page for ishmael website
     {% for number, text in bookDict.items() %}
     {% if number >59 and number <3059 %}
     <tr>
-        <td>{{ number }}</td>
+        <td><a name="{{number}}"</a>{{ number }}</td>
         <td>{{ text }}</td>
     </tr>
     {% endif %}
     {% endfor %}
+</table>
 
-
-</body>
-<footer>website by h.m.<br>
+<footer>website by h.m., &#x00A9; 2018 the funBook group<br>
     text courtesy of <a href="http://www.gutenberg.org/cache/epub/2489/pg2489.txt">project gutenberg</a>
 </footer>
+
+</body>
 
 </html>

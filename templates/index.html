@@ -7,7 +7,7 @@ index.html, main page for ishmael website
 <head>
   <meta charset="UTF-8">
   <title>
-    Welcome to drinkBase!
+    Call me Ishmael
   </title>
   <link rel="stylesheet" href="../static/altStyles.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Source+Code+Pro:300,400" rel="stylesheet">
@@ -18,11 +18,13 @@ index.html, main page for ishmael website
         <th></th>
         <th></th>
     </tr>
-    {% for number, text in bookDict %}
+    {% for number, text in bookDict.items() %}
+    {% if number >59 and number <3059 %}
     <tr>
         <td>{{ number }}</td>
         <td>{{ text }}</td>
     </tr>
+    {% endif %}
     {% endfor %}
 
 

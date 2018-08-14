@@ -29,5 +29,5 @@ def index():
     return render_template('index.html', bookDict = bookDict)
 
 if __name__== '__main__':
-    app.run(debug=True)
+    app.run()
 

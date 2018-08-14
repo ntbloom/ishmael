@@ -1,5 +1,27 @@
 /* styles.css -- stylesheet for ishmael website */
 
-p {
-    font-family: 'Open Sans', sans-serif;
+html {
+    background: url(images/watson.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body {
+    font-family: 'Bitter', serif;
+    color: #000;
+    font-size: 12pt;
+    text-align: left;
+}
+
+td {
+    padding-bottom: 0.5em;
+}
+
+footer {
+    position: center;
+    bottom: 0;
+    margin-top: 1em;
+    text-align: center;
 }

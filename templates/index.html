@@ -23,7 +23,7 @@ index.html, main page for ishmael website
     {% for number, text in bookDict.items() %}
     {% if number >59 and number <3059 %}
     <tr>
-        <td><a name="{{number}}"</a>{{ number }}</td>
+        <td class="number"><a name="{{number}}"</a>{{ number }}</td>
         <td>{{ text }}</td>
     </tr>
     {% endif %}

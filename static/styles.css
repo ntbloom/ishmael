@@ -16,21 +16,19 @@ body {
     padding-bottom: 0.25em;
 }
 
+table {
+    padding-right: 4em;
+}
+
 td {
     vertical-align: baseline;
     padding-bottom: 0.5em;
     padding-right: 0.5em;
 }
 
-header {
-    background-color: white;
-    font-size: 10pt;
-    position: fixed;
-    top: 0;
-    width: cover;
-    padding: 1em;
+td.number {
+    visibility: hidden;
 }
-
 
 footer {
     font-size: 8pt;

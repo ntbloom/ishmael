@@ -16,6 +16,19 @@ body {
     padding-bottom: 0.25em;
 }
 
+h1 {
+    font-family: 'Bitter', serif;
+    color: #000;
+    font-size: 12pt;
+    text-align: center;
+    font-weight: normal;
+}
+
+.title {
+    text-transform: uppercase;
+}
+
+
 table {
     padding-right: 4em;
 }

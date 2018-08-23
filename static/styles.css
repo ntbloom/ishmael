@@ -12,7 +12,7 @@ body {
     font-family: 'Bitter', serif;
     color: #000;
     font-size: 12pt;
-    text-align: left;
+    text-align: justify;
     padding-bottom: 0.25em;
 }
 
@@ -30,7 +30,8 @@ h1 {
 
 
 table {
-    padding-right: 4em;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 td {

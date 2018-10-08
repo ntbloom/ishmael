@@ -41,7 +41,7 @@ td {
 }
 
 td.number {
-    visibility: hidden;
+    visibility: hidden; 
 }
 
 footer {
@@ -51,4 +51,9 @@ footer {
     padding: 1em; 
     text-align: center;
     width: 100%;  
+}
+
+:target {
+    visibility: visible;  
+    padding-top: 8em; 
 }

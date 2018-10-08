@@ -25,9 +25,7 @@ for chunk in book.iter_content(100000):
 
 @app.route('/')
 def index():
-    # TODO: enter code for entering text into html table
     return render_template('index.html', bookDict = bookDict)
 
 if __name__== '__main__':
     app.run()
-

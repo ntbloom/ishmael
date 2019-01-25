@@ -2,23 +2,42 @@
 # makes funBook not repeat any paragraphs in its script
 
 #!usr/bin/python3
-import sqlite3
+import sqlite3, random
+
 
 # connect to sqlite database
+
 dbFile = "./paragraphs.db"
 conn = sqlite3.connect(dbFile)
 cursor = conn.cursor()
 
-# define upper and lower limits for paragraphs, dump into a list
-first = 63      #opening paragraph
-last = 2964     #closing paragraph
-array = []
-for i in range(last-first+1):
-    i = first
-    array.append(i)
-    first += 1
+def pullNum():
+    '''pops random number from master, adds to used'''
+    cursor.execute('SELECT * from master')
+    possible = cursor.fetchall()
+    conn.commit()
+    possible = [i[0] for i in possible]
+    begin = possible[0]
+    end = possible[-1]
+    rand = random.randint(begin, end)
+    print('rand: ', rand)
 
-##create the master table from scratch -- uncomment to start over
-##for i in range(len(array)):
-##    cursor.execute('INSERT INTO master (id) VALUES (?)', (array[i],))
-##conn.commit()
+    cursor.execute('INSERT INTO used (id) VALUES (?)', (rand,))
+    conn.commit()
+    cursor.execute('DELETE FROM master WHERE id=?', (rand,))
+    conn.commit()
+
+    #debug
+    cursor.execute('SELECT * from used')
+    used = cursor.fetchall()
+    conn.commit()
+    used = [i[0] for i in used]
+    print('used:', used)
+    cursor.execute('SELECT * from master')
+    master = cursor.fetchall()
+    conn.commit()
+    master = [i[0] for i in master]
+    print('master:', master)
+    conn.close()
+
+pullNum()

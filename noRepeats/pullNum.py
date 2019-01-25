@@ -20,12 +20,12 @@ def pullNum():
     cursor = conn.cursor()
 
     # pull random number from master
-    cursor.execute('SELECT * from master')
-    possible = cursor.fetchall()
-    possible = [i[0] for i in possible]
-    begin = possible[0]
-    end = possible[-1]
-    rand = random.randint(begin, end)
+    cursor.execute('SELECT * from master') 
+    possible = cursor.fetchall()          
+    possible = [i[0] for i in possible]  # converts from tuple to list
+    begin = possible[0]                     
+    end = possible[-1]                     
+    rand = random.randint(begin, end)     
     print('rand: ', rand)
     
     # insert random into used

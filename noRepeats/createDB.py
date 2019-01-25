@@ -11,6 +11,13 @@ conn = sqlite3.connect(dbFile)
 cursor = conn.cursor()
 
 
+# create tables
+cursor.execute('DROP TABLE IF EXISTS master')
+cursor.execute('CREATE TABLE master (id integer)')
+cursor.execute('DROP TABLE IF EXISTS used')
+cursor.execute('CREATE TABLE used (id integer)')
+
+
 # define upper and lower limits for paragraphs, dump into a list
 
 first = 63    #opening paragraph should be 63 in deployment
@@ -27,3 +34,4 @@ cursor.execute('DELETE from used')
 for i in range(len(array)):
     cursor.execute('INSERT INTO master (id) VALUES (?)', (array[i],))
 conn.commit()
+conn.close()

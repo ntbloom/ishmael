@@ -1,14 +1,21 @@
 ### build instructions for noRepeats
 
-Go to /noRepeats/ directory. Create sqlite3 db file
+Script is dependent on paragraphs.db file for execution
 
 ```
 touch paragraphs.db
 ```
 
-Deploy createDB.py file to initialize database
+Remaining methods are contained in Randpop.py
+
+
+```python
+from Randpop import Randpop
+
+randpop = Randpop()     # inits class
+randpop.createDB()      # populates sqlite database files
+randpop.pullNum()       # pulls random number, records transaction
 ```
-python3 createDB.py
-```
- 
-Import pullNum() function from pullNum.py to pull random
+
+Note that createDB() erases existing data and begins recounting from
+beginning

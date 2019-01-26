@@ -5,35 +5,39 @@
 import sqlite3, datetime
 from createDB import createDB
 
-#file is
 
 class Randpop:
-    def __init__(self, database):
+    def __init__(self, database='./paragraphs.db', first=63, last=70):
         self.database = database
+        self.first = first  # paragraph number to start
+        self.last = last    # paragraph number to finish 
         self.conn = sqlite3.connect(self.database) #used to commit/close
-        self.cursor = conn.cursor() #used for SQL queries
+        self.cursor = self.conn.cursor() #used for SQL queries
 
     def pullNum(self):
         '''pops random number from master, adds to used'''
-        # pull random number from master
-        self.cursor.execute('SELECT * from master ORDER BY RANDOM() LIMIT 1') 
-        rand = cursor.fetchall() 
-        rand = [i[0]for i in rand]
-        print('rand: ', rand)
-        
         try:    # until all paragraphs run out
+            
+            # pull random number from master
+            self.cursor.execute('SELECT * from master ORDER BY RANDOM() LIMIT 1') 
+            rand = self.cursor.fetchall() 
+           
+           
+            rand = [i[0]for i in rand]
+            print('rand: ', rand)
+        
+            # pops from 'master', pushes to 'used' with date stamp
             date = datetime.datetime.now() 
             self.cursor.execute('INSERT INTO used (id, day, month, year) \
                 VALUES (?,?,?,?)', [rand[0], date.day, date.month, date.year])
             self.cursor.execute('DELETE FROM master WHERE id=?', (rand[0],))
             # commit changes
             self.conn.commit()
-            self.conn.close()
 
         except:
             # start all over again
-            createDB()
-            pullNum()
+            self.createDB()
+            self.pullNum()
 
     
     def createDB(self):
@@ -47,16 +51,13 @@ class Randpop:
         self.cursor.execute('CREATE TABLE used \
             (id integer, month integer, day integer, year integer)')
 
-
         # define upper and lower limits for paragraphs, dump into a list
         
-        first = 63    #opening paragraph should be 63 in deployment
-        last = 2964   #closing paragraph should be 2964 in deployment
         array = []
-        for i in range(last-first+1):
-            i = first
+        for i in range(self.last-self.first+1):
+            i = self.first
             array.append(i)
-            first += 1
+            self.first += 1
 
 
         # populates master table
@@ -66,24 +67,14 @@ class Randpop:
         for i in range(len(array)):
             self.cursor.execute('INSERT INTO master (id) VALUES (?)', (array[i],))
         self.conn.commit()
-        self.conn.close()
 
-def debug():    
-    ''' prints output of pullNum to terminal for development/debugging'''
-    dbFile = "./paragraphs.db"
-    conn = sqlite3.connect(dbFile)
-    cursor = conn.cursor()
-    
-    cursor.execute('SELECT * from used')
-    used = cursor.fetchall()
-    print('used:\n', used)
-    
-    cursor.execute('SELECT * from master')
-    master = cursor.fetchall()
-    master = [i[0] for i in master]
-    print('master:', master)
-    
-    conn.close()
-
-pullNum()
-debug()
+    def debug(self):    
+        ''' prints output of pullNum to terminal for development/debugging'''
+        self.cursor.execute('SELECT * from used')
+        used = self.cursor.fetchall()
+        print('used:\n', used)
+        
+        self.cursor.execute('SELECT * from master')
+        master = self.cursor.fetchall()
+        master = [i[0] for i in master]
+        print('master:', master)

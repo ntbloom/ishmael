@@ -3,15 +3,18 @@
 
 -Records the difference with a time stamp
 
+</br>
 
-### build instructions for noRepeats
+### build instructions
 
 Script is dependent on paragraphs.db file for execution
 
 ```
 touch paragraphs.db
 ```
-<br>
+
+</br>
+
 Remaining methods are contained in Randpop.py
 
 

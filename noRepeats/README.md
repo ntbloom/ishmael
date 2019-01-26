@@ -6,13 +6,9 @@ Go to /noRepeats/ directory. Create sqlite3 db file
 touch paragraphs.db
 ```
 
-Deploy createDB.py file to initialize data
+Deploy createDB.py file to initialize database
 ```
 python3 createDB.py
 ```
-
-Run pullNum to see random number generator in action
-```
-python3 pullNum.py
-```
-
+ 
+Import pullNum() function from pullNum.py to pull random

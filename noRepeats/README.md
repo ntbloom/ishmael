@@ -27,4 +27,4 @@ randpop.pullNum()       # pulls random number, records transaction
 randpop.debug()         # prints 'master' and 'used' tables to terminal
 ```
 
-Note that ```createDB()``` erases existing data and begins recounting from beginning
+Note that ```createDB()``` erases existing data and begins recounting from beginning. Should only be invoked once, at initial deployment.

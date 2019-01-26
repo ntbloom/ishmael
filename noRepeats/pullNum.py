@@ -2,15 +2,7 @@
 # makes funBook not repeat any paragraphs in its script
 
 #!usr/bin/python3
-import sqlite3, random
-
-
-# connect to sqlite database
-'''
-dbFile = "./paragraphs.db"
-conn = sqlite3.connect(dbFile)
-cursor = conn.cursor()
-'''
+import sqlite3
 
 def pullNum():
     '''pops random number from master, adds to used'''
@@ -25,43 +17,31 @@ def pullNum():
     rand = [i[0]for i in rand]
     print('rand: ', rand)
 
-    '''
-    possible = cursor.fetchall()          
-    possible = [i[0] for i in possible]  # converts from tuple to list
-
-    begin = possible[0]                     
-    end = possible[-1]                     
-    rand = random.randint(begin, end)     
-    print('rand: ', rand)
-    '''
     try:
         cursor.execute('INSERT INTO used (id) VALUES (?)', (rand[0],))
         cursor.execute('DELETE FROM master WHERE id=?', (rand[0],))
     except:
+        # TODO: change output here for real-world consequences of
+        # running out of numbers
         print("all done!")
     # commit changes
     conn.commit()
     conn.close()
 
 def debug():    
-    ''' prints output of pullNum to terminal '''
+    ''' prints output of pullNum to terminal for development/debugging'''
     dbFile = "./paragraphs.db"
     conn = sqlite3.connect(dbFile)
     cursor = conn.cursor()
     
     cursor.execute('SELECT * from used')
     used = cursor.fetchall()
-    used = [i[0] for i in used]
-    print('used:', used)
+    used = [i[0] for i in used]A
+    print('used:\n', used)
+    
     cursor.execute('SELECT * from master')
     master = cursor.fetchall()
     master = [i[0] for i in master]
     print('master:', master)
     
     conn.close()
-
-print('before')
-debug()
-pullNum()
-print('\nafter')
-debug()

@@ -2,7 +2,9 @@
 # makes funBook not repeat any paragraphs in its script
 
 #!usr/bin/python3
-import sqlite3
+import sqlite3, datetime
+from createDB import createDB
+
 
 def pullNum():
     '''pops random number from master, adds to used'''
@@ -16,17 +18,20 @@ def pullNum():
     rand = cursor.fetchall() 
     rand = [i[0]for i in rand]
     print('rand: ', rand)
-
-    try:
-        cursor.execute('INSERT INTO used (id) VALUES (?)', (rand[0],))
+    
+    try:    # until all paragraphs run out
+        date = datetime.datetime.now() 
+        cursor.execute('INSERT INTO used (id, day, month, year) \
+            VALUES (?,?,?,?)', [rand[0], date.day, date.month, date.year])
         cursor.execute('DELETE FROM master WHERE id=?', (rand[0],))
+        # commit changes
+        conn.commit()
+        conn.close()
+
     except:
-        # TODO: change output here for real-world consequences of
-        # running out of numbers
-        print("all done!")
-    # commit changes
-    conn.commit()
-    conn.close()
+        # start all over again
+        createDB()
+        pullNum()
 
 def debug():    
     ''' prints output of pullNum to terminal for development/debugging'''
@@ -36,7 +41,6 @@ def debug():
     
     cursor.execute('SELECT * from used')
     used = cursor.fetchall()
-    used = [i[0] for i in used]A
     print('used:\n', used)
     
     cursor.execute('SELECT * from master')
@@ -45,3 +49,6 @@ def debug():
     print('master:', master)
     
     conn.close()
+
+pullNum()
+debug()

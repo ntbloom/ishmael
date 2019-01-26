@@ -21,7 +21,7 @@ cursor.execute('CREATE TABLE used (id integer)')
 # define upper and lower limits for paragraphs, dump into a list
 
 first = 63    #opening paragraph should be 63 in deployment
-last = 90     #closing paragraph should be 2964 in deployment
+last = 2964   #closing paragraph should be 2964 in deployment
 array = []
 for i in range(last-first+1):
     i = first

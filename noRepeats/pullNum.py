@@ -20,20 +20,25 @@ def pullNum():
     cursor = conn.cursor()
 
     # pull random number from master
-    cursor.execute('SELECT * from master') 
+    cursor.execute('SELECT * from master ORDER BY RANDOM() LIMIT 1') 
+    rand = cursor.fetchall() 
+    rand = [i[0]for i in rand]
+    print('rand: ', rand)
+
+    '''
     possible = cursor.fetchall()          
     possible = [i[0] for i in possible]  # converts from tuple to list
+
     begin = possible[0]                     
     end = possible[-1]                     
     rand = random.randint(begin, end)     
     print('rand: ', rand)
-    
-    # insert random into used
-    cursor.execute('INSERT INTO used (id) VALUES (?)', (rand,))
-    
-    # delete random from master
-    cursor.execute('DELETE FROM master WHERE id=?', (rand,))
-
+    '''
+    try:
+        cursor.execute('INSERT INTO used (id) VALUES (?)', (rand[0],))
+        cursor.execute('DELETE FROM master WHERE id=?', (rand[0],))
+    except:
+        print("all done!")
     # commit changes
     conn.commit()
     conn.close()
